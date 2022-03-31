@@ -53,7 +53,7 @@ void Stag::logResults(string path)
 	drawer.drawQuads(path + "4 quads.png", image, quadDetector.getQuads());
 	if (keepLogs)
 		drawer.drawQuads(path + "5 distorted quads.png", image, quadDetector.getDistortedQuads());
-	drawer.drawMarkers(path + "6 markers.png", image, markers);
+	drawer.drawMarkersWithPath(path + "6 markers.png", image, markers);
 	if (keepLogs)
 		drawer.drawQuads(path + "7 false quads.png", image, falseCandidates);
 	drawer.drawEllipses(path + "8 ellipses.png", image, markers);

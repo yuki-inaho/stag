@@ -30,7 +30,8 @@ public:
 	void drawQuads(const string& path, cv::Mat image, const vector<Quad> &quads);
 
 	// draws markers
-	void drawMarkers(const string& path, cv::Mat image, const vector<Marker> &markers);
+	cv::Mat drawMarkersWithGrayImage(const cv::Mat& image, const vector<Marker> &markers);
+	void drawMarkersWithPath(const string& path, cv::Mat image, const vector<Marker> &markers);
 
 	// draws refined markers and their ellipses
 	void drawEllipses(const string& path, cv::Mat image, const vector<Marker> &markers);
