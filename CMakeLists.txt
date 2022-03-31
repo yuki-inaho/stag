@@ -40,11 +40,11 @@ target_link_libraries(
 )
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/app)
 
+# @TODO: reduce redundant description
 add_executable(
     demo_with_an_image
     demo_with_an_image.cpp
 )
-
 target_link_libraries(
     demo_with_an_image
     LibStag
@@ -54,9 +54,18 @@ add_executable(
     demo_with_cam
     demo_with_cam.cpp
 )
-
 target_link_libraries(
     demo_with_cam
+    LibStag
+    Boost::program_options
+)
+
+add_executable(
+    demo_with_movie
+    demo_with_movie.cpp
+)
+target_link_libraries(
+    demo_with_movie
     LibStag
     Boost::program_options
 )
