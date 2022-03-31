@@ -110,6 +110,37 @@ void Drawer::drawQuads(const string& path, Mat image, const vector<Quad> &quads)
 	cv::imwrite(path, bgrMat, compressionParams);
 }
 
+cv::Mat Drawer::drawMarkers(const Mat& image, const vector<Marker> &markers)
+{
+	if(image.channels() != 3){
+		std::cerr << "Drawer::drawMarkers() is only supported 8UC3 image" << std::endl;
+		exit(EXIT_FAILURE);
+	}
+	Mat bgrMat = image.clone();
+
+	for (int i = 0; i < markers.size(); i++)
+	{
+		vector<Point2d> corners = markers[i].corners;
+		Point2d center = markers[i].center;
+
+		cv::circle(bgrMat, cv::Point(corners[0].x, corners[0].y), 6, cv::Scalar(255, 255, 255), -1, cv::LINE_AA);
+		for (int j = 0; j < 4; j++)
+			cv::line(bgrMat, cv::Point(corners[j].x, corners[j].y), cv::Point(corners[(j + 1) % 4].x, corners[(j + 1) % 4].y), cv::Scalar(255, 255, 255), 3, cv::LINE_AA);
+
+		cv::circle(bgrMat, cv::Point(corners[0].x, corners[0].y), 5, cv::Scalar(50, 255, 50), -1, cv::LINE_AA);
+		for (int j = 0; j < 4; j++)
+			cv::line(bgrMat, cv::Point(corners[j].x, corners[j].y), cv::Point(corners[(j + 1) % 4].x, corners[(j + 1) % 4].y), cv::Scalar(50, 255, 50), 2, cv::LINE_AA);
+
+		cv::circle(bgrMat, cv::Point(center.x, center.y), 6, cv::Scalar(255, 255, 255), -1, cv::LINE_AA);
+		cv::circle(bgrMat, cv::Point(center.x, center.y), 5, cv::Scalar(50, 255, 50), -1, cv::LINE_AA);
+
+		cv::putText(bgrMat, std::to_string(markers[i].id), center, cv::FONT_HERSHEY_DUPLEX, 2, cv::Scalar(255, 255, 255), 5, cv::LINE_AA);
+		cv::putText(bgrMat, std::to_string(markers[i].id), center, cv::FONT_HERSHEY_DUPLEX, 2, cv::Scalar(50, 50, 255), 2, cv::LINE_AA);
+	}
+	return bgrMat;
+}
+
+
 cv::Mat Drawer::drawMarkersWithGrayImage(const Mat& image, const vector<Marker> &markers)
 {
 	Mat greyMat = image.clone();

@@ -38,6 +38,8 @@ public:
 	void logResults(string path = "");
 	vector<Marker> getMarkerList() const { return markers; }
 	cv::Mat drawMarkersWithGrayImage(const cv::Mat& image) { return drawer.drawMarkersWithGrayImage(image, markers); }
+	cv::Mat drawMarkers(const cv::Mat& image) { return drawer.drawMarkers(image, markers); }
+	void clear();
 };
 
 

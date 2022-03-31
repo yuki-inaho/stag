@@ -30,6 +30,7 @@ public:
 	void drawQuads(const string& path, cv::Mat image, const vector<Quad> &quads);
 
 	// draws markers
+	cv::Mat drawMarkers(const cv::Mat& image, const vector<Marker> &markers);
 	cv::Mat drawMarkersWithGrayImage(const cv::Mat& image, const vector<Marker> &markers);
 	void drawMarkersWithPath(const string& path, cv::Mat image, const vector<Marker> &markers);
 

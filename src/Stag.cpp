@@ -44,6 +44,10 @@ void Stag::detectMarkers(Mat inImage)
 		poseRefiner.refineMarkerPose(&edInterface, markers[indMarker]);
 }
 
+void Stag::clear(){
+	markers.clear();
+	falseCandidates.clear();
+}
 
 void Stag::logResults(string path)
 {
