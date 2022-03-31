@@ -40,11 +40,11 @@ target_link_libraries(
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/app)
 
 add_executable(
-    testrun
-    main.cpp
+    demo_with_an_image
+    demo_with_an_image.cpp
 )
 
 target_link_libraries(
-    testrun
+    demo_with_an_image
     LibStag
 )
